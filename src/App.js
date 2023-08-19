@@ -43,18 +43,18 @@ function App() {
           <div className="left">
             <h4 id="break-label" >Break Length</h4>
             <div className="flex">
-              <i className="fa-solid fa-arrow-down" id="break-decrement" onClick={()=>dispatch(decBreak())}>d</i>
+              <i className="fa-solid fa-arrow-down" id="break-decrement" onClick={()=>dispatch(decBreak())}></i>
               <p id="break-length">{breakLen}</p>
-              <i className="fa-solid fa-arrow-up" id="break-increment" onClick={()=>dispatch(incBreak())} >i</i>
+              <i className="fa-solid fa-arrow-up" id="break-increment" onClick={()=>dispatch(incBreak())} ></i>
             </div>
           </div>
 
           <div className="right">
             <h4 id="session-label">Session Length</h4>
             <div className="flex">
-              <i className="fa-solid fa-arrow-down" id="session-decrement" onClick={()=>dispatch(decSession())} >d</i>
+              <i className="fa-solid fa-arrow-down" id="session-decrement" onClick={()=>dispatch(decSession())} ></i>
               <p id="session-length">{sessionLen}</p>
-              <i className="fa-solid fa-arrow-up" id="session-increment" onClick={()=>dispatch(incSession())} >i</i>
+              <i className="fa-solid fa-arrow-up" id="session-increment" onClick={()=>dispatch(incSession())} ></i>
             </div>
           </div>
         </div>
@@ -68,11 +68,11 @@ function App() {
           <div id="start_stop" onClick={startTimer} >
             <img src="https://icon-library.com/images/play-pause-icon/play-pause-icon-17.jpg" alt="play/pause" />
           </div>
-          <div id="reset" onClick={()=> dispatch(reset())} >
+          <div id="reset" onClick={()=> {audioRef.current.pause();audioRef.current.currentTime=0;dispatch(reset())}} >
             <img src="https://icons-for-free.com/iconfiles/png/512/refresh-131964784961013457.png" alt="reset" />
           </div>
         </div>
-        <audio ref={audioRef} id="beep" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
+        <audio ref={audioRef} id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"   ></audio>
         <div className="author">
           <p>Develope by <strong>Sufyan Siddiqui</strong></p>
         </div>

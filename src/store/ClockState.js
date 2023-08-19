@@ -17,10 +17,10 @@ export const ClockState = createSlice({
     incSession: (state, action) => {
       if (!state.play && state.sessionLen < 60 ) {
         state.sessionLen += 1;
-        if(state.activeSession){ //if the session is active then set the time a/c to the session
+        //-----if the session is active then set the time a/c to the session
+        if(state.activeSession){  
             state.currentTime = state.sessionLen * 60;
         }
-        console.log("increase Session ");
       }
     },
     //decrease session by 1
@@ -71,39 +71,31 @@ export const ClockState = createSlice({
     },
     //Play/Pause
     playPause: (state, action) => {
-    //   console.log("paly state", state.play);
 
-      if (state.play && state.activeSession) {
-        state.currentTime -= 1;
-        // console.log("current time is running ..." + state.currentTime);
-        if (state.currentTime < 1) {
+      if (state.play && (state.activeSession || state.activeBreak)) {
+        state.currentTime -= 1;             //If play then decrease it by one
+
+        //--------if timer less than 1 then it should switch to the break time
+        if (state.currentTime < 0 && state.activeSession) {         
+          state.activeAudio = true;
           state.activeSession = false;
           state.activeBreak = true;
+        //-----if the timer reach to zero then switch to the break time.
+          state.currentTime = state.breakLen * 60; 
+        }
+        //----IF the break time is the Current-time and Current-time is less than 0
+        if(state.currentTime < 0 && state.activeBreak){
+          state.activeBreak = false;
           state.activeAudio = true;
-          state.currentTime = state.breakLen * 60; //if the timer reach to zero then switch to the break time.
+          state.activeSession = true;
+          //reseting to session length
+          state.currentTime = state.sessionLen * 60;
+          state.activeAudio = false;
         }
-      } else if(state.play && state.activeBreak){
-        state.currentTime -=1;
-        if(state.currentTime === (state.breakLen * 60)-3){
-            state.activeAudio = false;
-            console.log("audiot active is set to false")
-        }
-        console.log("switch to the break time..");
-        if(state.currentTime===0){
-            state.activeAudio = true;
-            clearInterval(action.payload)
-           let a= setTimeout(() => {
-                state.activeAudio = false;
-            }, 1000);
-            state.activeBreak = false;
-            state.activeSession = true;
-            console.log("break time is over .. clearing interval")
-            clearTimeout(a)
-        }
-      }
+      } 
+    
       else {
         clearInterval(action.payload);
-        console.log("Clear Interval.");
         state.activeAudio = false;
       }
     },
