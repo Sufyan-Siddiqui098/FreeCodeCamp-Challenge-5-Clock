@@ -1,13 +1,124 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 2px solid red; */
+  background-color: #121212;
+  color: #fff;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  gap: .4em;
+
+}
+
+h1{
+  font-size: 3em;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4em;
+}
+.flex>i{
+  cursor: pointer;
+}
+
+.flex > p{
+  font-size: 1.4em;
+  letter-spacing: 1px;
+}
+
+#session-label, #break-label{
+  letter-spacing: 1px;
+}
+.grid{
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr;
+  /* border: 2px solid black; */
+  /* min-width: 50%; */
+  min-height: 20vh;
+}
+.left, .right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  font-size: 1.6em;
+}
+
+.clock-container{
+  /* margin: 1em 0; */
+  border: 6px solid rgb(151, 151, 151);
+  font-size: 1.6rem;
+  display: flex;
+  gap: .5em;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: .5em;
+  width: 200px;
+  border-radius: 1em;
+}
+.red{
+  color: red;
+}
+#time-left{
+  font-size: 2.4em;
+}
+
+.operation{
+  display: flex;
+  /* border: 1px solid red; */
+  width: 200px;
+  gap: .8rem;
+  align-items: center;
+  justify-content: center;
+  margin: 1em 0;
+  font-size: 1.2em;
+}
+.operation > div{
+  /* border: 2px solid yellow; */
+  /* padding: .2em; */
+  cursor: pointer;
+  width: 60px;
+}
+.operation div >img{
+  /* width: 40px; */
+  width: 100%;
+  filter: invert();
+
+}
+
+.author{
+  margin: 1em 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.author strong{
+  color: orange;
+}
+
+@media screen and (max-width: 392px) {
+  .grid{
+    gap: .2em;
+  }
+  h1{
+    font-size: 2.5em;
+  }
+  .left, .right{
+    font-size: 1.3em;
+  }
 }
